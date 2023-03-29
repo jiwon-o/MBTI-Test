@@ -25,6 +25,7 @@
         <div
           class="progress-bar"
           role="progressbar"
+          aria-label="Basic example"
           style="width: calc(100 / 12 * 1%)"
         ></div>
       </div>
@@ -34,9 +35,9 @@
       <button id="B" type="button" class="btn btn-primary mt-5">Primary</button>
     </article>
     <article class="result">
-      <img id="img" src="" alt="" />
-      <h2 id="animal">동물이름</h2>
-      <h3 id="explain">설명</h3>
+      <img id="img" class="rounded-circle mt-5" src="lion.jpg" alt="animal" />
+      <h2 id="animal" class="text-center mt-5">동물이름</h2>
+      <h3 id="explain" class="text-center mt-5">설명</h3>
     </article>
     <input type="hidden" id="EI" value="0" />
     <input type="hidden" id="SN" value="0" />
@@ -89,13 +90,23 @@
         if (num === 13) {
           $(".question").hide();
           $(".result").show();
+          var mbti = "";
+          $("#EI").val() < 2 ? (mbti += "I") : (mbti += "E");
+          $("#SN").val() < 2 ? (mbti += "N") : (mbti += "S");
+          $("#TF").val() < 2 ? (mbti += "F") : (mbti += "T");
+          $("#JP").val() < 2 ? (mbti += "P") : (mbti += "J");
+          alert(mbti);
+        } else {
+          $(".progress-bar").attr(
+            "style",
+            "width: calc(100 / 12 *" + num + "%)"
+          );
+          $("#title").html(q[num]["title"]);
+          $("#type").val(q[num]["type"]);
+          $("#A").html(q[num]["A"]);
+          $("#B").html(q[num]["B"]);
+          num++;
         }
-        $(".progress-bar").attr("style", "width: calc(100 / 12 *" + num + "%)");
-        $("#title").html(q[num]["title"]);
-        $("#type").val(q[num]["type"]);
-        $("#A").html(q[num]["A"]);
-        $("#B").html(q[num]["B"]);
-        num++;
       }
     </script>
   </body>
